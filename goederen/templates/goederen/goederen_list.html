@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container pt-5">
+
+        <div class="card">
+        <div class="card-header">
+            Alle goederen
+
+            <a class="btn btn-primary float-right" href="{% url 'goederen-create' %}">  Goed Toevoegen <i class="fa fa-plus-square-o"></i> </a>
+        </div>
+        <div class="card-body">
+    <table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th> Naam </th>
+            <th> Notities</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for object in object_list %}
+        <tr>
+        <td>{{ object.id }}</td>
+            <td>{{ object.naam }}</td>
+
+            <td>
+              <ul>
+            {% for n in object.notities.all %}
+                 <li>{{ n.notitie }}</li>
+             {% endfor %}
+              </ul>
+            </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+        </div> <!-- /.card-body -->
+        </div> <!-- /.card -->
+    </div> <!-- /.container -->
+
+{% endblock %}
